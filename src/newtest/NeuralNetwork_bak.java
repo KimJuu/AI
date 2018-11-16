@@ -9,13 +9,13 @@ public class NeuralNetwork_bak {
 	static final double LEARNING_RATE=0.8;
 	final static int INPUT_NEURONS = 2;
 	final static int HIDDEN_NEURONS = 2;
-	private Neuron[] neurons = new Neuron[INPUT_NEURONS + HIDDEN_NEURONS +1];
+	private Neuron_bak[] neurons = new Neuron_bak[INPUT_NEURONS + HIDDEN_NEURONS +1];
 	public NeuralNetwork_bak(){
 		
 		//
-		IntStream.range(0, INPUT_NEURONS).forEach(i -> neurons[i] = new Neuron(LayerType.I));
-		IntStream.range(INPUT_NEURONS, INPUT_NEURONS + HIDDEN_NEURONS).forEach(i -> neurons[i] = new Neuron(LayerType.H));
-		neurons[INPUT_NEURONS + HIDDEN_NEURONS] = new Neuron(LayerType.O);
+		IntStream.range(0, INPUT_NEURONS).forEach(i -> neurons[i] = new Neuron_bak(LayerType.I));
+		IntStream.range(INPUT_NEURONS, INPUT_NEURONS + HIDDEN_NEURONS).forEach(i -> neurons[i] = new Neuron_bak(LayerType.H));
+		neurons[INPUT_NEURONS + HIDDEN_NEURONS] = new Neuron_bak(LayerType.O);
 	}
 	
 	public NeuralNetwork_bak forwardprop(double input[]){
@@ -63,7 +63,7 @@ public class NeuralNetwork_bak {
 		return this;
 	}
 	
-	public Neuron[] getNeurons() {return neurons;}
+	public Neuron_bak[] getNeurons() {return neurons;}
 	public String toString() {return Arrays.toString(neurons);}
 	
 }

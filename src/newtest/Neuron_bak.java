@@ -3,12 +3,12 @@ package newtest;
 
 public class Neuron_bak {
 	
-	private NeuralNetwork.LayerType layerType;
+	private NeuralNetwork_bak.LayerType layerType;
 	private double threshold = 0.5 - Math.random();
 	private double[] weights = {0.5 - Math.random(), 0.5 - Math.random()};
 	private double output = 0;
 	private double error = 0;
-	public Neuron_bak(NeuralNetwork.LayerType layerType){
+	public Neuron_bak(NeuralNetwork_bak.LayerType layerType){
 		this.layerType = layerType;
 	}
 	public void applyActivationFunction(double weightedSum){
@@ -19,10 +19,10 @@ public class Neuron_bak {
 	}
 	
 	
-	public NeuralNetwork.LayerType getLayerType() {
+	public NeuralNetwork_bak.LayerType getLayerType() {
 		return layerType;
 	}
-	public void setLayerType(NeuralNetwork.LayerType layerType) {
+	public void setLayerType(NeuralNetwork_bak.LayerType layerType) {
 		this.layerType = layerType;
 	}
 	public double getThreshold() {
@@ -52,7 +52,7 @@ public class Neuron_bak {
 	@Override
 	public String toString() {
 		String returnValue ="";
-		if(layerType == NeuralNetwork.LayerType.I){
+		if(layerType == NeuralNetwork_bak.LayerType.I){
 			returnValue ="(" + layerType +": " + String.format("%.2f",output) + ")";
 		}else{
 			returnValue ="(" + layerType +", " + 
