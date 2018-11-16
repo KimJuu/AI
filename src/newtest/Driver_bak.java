@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.stream.IntStream;
 
-public class Driver {
+public class Driver_bak {
 	static int NUMB_OF_EPOCHS = 10000;
 
 	static double TRAINING_DATA[][][] = new double [][][] {
@@ -66,8 +66,8 @@ public class Driver {
 				IntStream.range(0, NUMB_OF_EPOCHS).forEach(i ->{
 					System.out.println("[epoch "+i+"]");
 					IntStream.range(0, TRAINING_DATA.length).forEach(j ->{
-						System.out.println(neuralNetwork.forwardprop(Driver.TRAINING_DATA[j][0])
-																			.backpropError(Driver.TRAINING_DATA[j][1][0]));
+						System.out.println(neuralNetwork.forwardprop(Driver_bak.TRAINING_DATA[j][0])
+																			.backpropError(Driver_bak.TRAINING_DATA[j][1][0]));
 					});
 				});
 				System.out.println("[done training]");
