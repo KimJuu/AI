@@ -11,8 +11,6 @@ public class NeuralNetwork_bak {
 	final static int HIDDEN_NEURONS = 2;
 	private Neuron_bak[] neurons = new Neuron_bak[INPUT_NEURONS + HIDDEN_NEURONS +1];
 	public NeuralNetwork_bak(){
-		
-		//
 		IntStream.range(0, INPUT_NEURONS).forEach(i -> neurons[i] = new Neuron_bak(LayerType.I));
 		IntStream.range(INPUT_NEURONS, INPUT_NEURONS + HIDDEN_NEURONS).forEach(i -> neurons[i] = new Neuron_bak(LayerType.H));
 		neurons[INPUT_NEURONS + HIDDEN_NEURONS] = new Neuron_bak(LayerType.O);
