@@ -17,7 +17,7 @@ public class NeuralNetwork_bak {
 	}
 	
 	public NeuralNetwork_bak forwardprop(double input[]){
-		
+		//{{10,0},{1}}
 		double weightedSum=0;
 		for (int i = 0; i < neurons.length; i++) {
 			switch (neurons[i].getLayerType()) {
@@ -27,13 +27,13 @@ public class NeuralNetwork_bak {
 			case H:
 				weightedSum = neurons[i].getThreshold() + 
 										neurons[i].getWeights()[0] * neurons[0].getOutput() +
-										neurons[i].getWeights()[1] + neurons[1].getOutput();
+										neurons[i].getWeights()[1] * neurons[1].getOutput();
 				neurons[i].applyActivationFunction(weightedSum);
 				break;
 			case O:
 				weightedSum = neurons[i].getThreshold() + 
 										neurons[i].getWeights()[0] * neurons[2].getOutput() +
-										neurons[i].getWeights()[1] + neurons[3].getOutput();
+										neurons[i].getWeights()[1] * neurons[3].getOutput();
 				neurons[i].applyActivationFunction(weightedSum);
 				break;
 			}

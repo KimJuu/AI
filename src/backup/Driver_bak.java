@@ -26,6 +26,7 @@ public class Driver_bak {
 					result[i] = neuralNetwork_bak.forwardprop(TotalData.TRAINING_DATA[i][0])
 														.getNeurons()[NeuralNetwork_bak.INPUT_NEURONS + NeuralNetwork_bak.HIDDEN_NEURONS]
 														.getOutput();
+					System.out.println("i : "+ i +"    result :  "+result[i]);
 				});
 				printResult(result);
 				break;
