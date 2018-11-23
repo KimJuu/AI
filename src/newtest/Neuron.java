@@ -1,21 +1,17 @@
 package newtest;
 
-
 public class Neuron {
 	
 	private NeuralNetwork.LayerType layerType;
-	private double threshold = Math.random()/2;
-	private double[] weights = {Math.random()/2, Math.random()/2, Math.random()/2, Math.random()/2, Math.random()/2, Math.random()/2, Math.random()/2, Math.random()/2, Math.random()/2, Math.random()/2, Math.random()/2, Math.random()/2, Math.random()/2};
+	private double threshold = 0.5 - Math.random();
+	private double[] weights = {0.5 - Math.random(), 0.5 - Math.random(), 0.5 - Math.random()};
 	private double output = 0;
 	private double error = 0;
 	public Neuron(NeuralNetwork.LayerType layerType){
 		this.layerType = layerType;
 	}
 	public void applyActivationFunction(double weightedSum){
-		output = (1.0 / (1 + Math.exp(-1.0 * weightedSum)) * weightedSum);
-		System.out.println("layerType :"+layerType);
-		System.out.println("threshold :"+threshold);
-		System.out.println("applyActivationFunction output : "+output);
+		output = 1.0 / (1 + Math.exp(-1.0 * weightedSum));
 	}
 	public double derivative(){
 		return output * (1.0 - output);
