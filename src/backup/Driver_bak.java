@@ -21,6 +21,7 @@ public class Driver_bak {
 			
 			switch (command) {
 			case "run":
+				System.out.println(">>>>>>Driver_bak run");
 				double[] result = new double[]{0,0,0,0};
 				IntStream.range(0, TotalData.TRAINING_DATA.length).forEach(i ->{
 					result[i] = neuralNetwork_bak.forwardprop(TotalData.TRAINING_DATA[i][0])

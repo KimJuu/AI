@@ -4,7 +4,7 @@ import java.util.Arrays;
 public class NeuralNetwork {
 	
 	static enum LayerType {I, H, O}
-	static final double LEARNING_RATE=0.8;
+	static final double LEARNING_RATE=0.9;
 	final static int INPUT_NEURONS = 3;
 	final static int HIDDEN_NEURONS = 3;
 	final static int OUTPUT_NEURONS = 2;
@@ -24,17 +24,19 @@ public class NeuralNetwork {
 				neurons[i].setOutput(input[i]);
 				break;
 			case H:
-				weightedSum = neurons[i].getThreshold() + 
-										neurons[i].getWeights()[0] * neurons[0].getOutput() +
-										neurons[i].getWeights()[1] * neurons[1].getOutput() +
-										neurons[i].getWeights()[2] * neurons[2].getOutput();
+				weightedSum = neurons[i].getThreshold();
+				for(int InputNo=0;InputNo<INPUT_NEURONS; InputNo++){
+					weightedSum += neurons[i].getWeights()[InputNo] * neurons[InputNo].getOutput();
+				}
 				neurons[i].applyActivationFunction(weightedSum);
 				break;
 			case O:
-				weightedSum = neurons[i].getThreshold() + 
-										neurons[i].getWeights()[0] * neurons[3].getOutput() +
-										neurons[i].getWeights()[1] * neurons[4].getOutput() +
-										neurons[i].getWeights()[2] * neurons[5].getOutput();
+				weightedSum = neurons[i].getThreshold();
+				
+				
+				for(int HiddenNo= INPUT_NEURONS; HiddenNo<INPUT_NEURONS + HIDDEN_NEURONS;HiddenNo++){
+					weightedSum += neurons[i].getWeights()[HiddenNo - INPUT_NEURONS] * neurons[HiddenNo].getOutput();
+				}
 				neurons[i].applyActivationFunction(weightedSum);
 				break;
 			}
@@ -47,7 +49,7 @@ public class NeuralNetwork {
 		//OUTPUT
 		for(int i=INPUT_NEURONS + HIDDEN_NEURONS;i<INPUT_NEURONS + HIDDEN_NEURONS + OUTPUT_NEURONS;i++){
 			//OUTPUT SET	(6,7)
-			if(i == (outputNo+6)){
+			if(i == (outputNo+ INPUT_NEURONS + HIDDEN_NEURONS)){
 				neurons[i].setError((targetResult - neurons[i].getOutput()) * neurons[i].derivative());
 				neurons[i].setThreshold(neurons[i].getThreshold() + LEARNING_RATE * neurons[i].getError());
 				
@@ -57,7 +59,6 @@ public class NeuralNetwork {
 				}
 			}
 		}
-		
 		
 		//HIDDEN
 		for(int i=INPUT_NEURONS;i<INPUT_NEURONS + HIDDEN_NEURONS;i++){
