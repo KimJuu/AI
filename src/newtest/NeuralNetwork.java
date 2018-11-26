@@ -1,13 +1,15 @@
 package newtest;
+
 import java.util.Arrays;
+
 
 public class NeuralNetwork {
 	
 	static enum LayerType {I, H, O}
-	static final double LEARNING_RATE=0.9;
-	final static int INPUT_NEURONS = 3;
-	final static int HIDDEN_NEURONS = 3;
-	final static int OUTPUT_NEURONS = 2;
+	static final double LEARNING_RATE=0.99;
+	final static int INPUT_NEURONS = 12;
+	final static int HIDDEN_NEURONS = 14;
+	final static int OUTPUT_NEURONS = 6;
 	private Neuron[] neurons = new Neuron[INPUT_NEURONS + HIDDEN_NEURONS +OUTPUT_NEURONS];
 	public NeuralNetwork(){	//뉴런생성
 		for(int i=0;i<INPUT_NEURONS;i++) neurons[i] = new Neuron(LayerType.I);
@@ -16,7 +18,6 @@ public class NeuralNetwork {
 	}
 	
 	public NeuralNetwork forwardprop(double input[]){
-		//{{10,0},{1}}
 		double weightedSum=0;
 		for (int i = 0; i < neurons.length; i++) {
 			switch (neurons[i].getLayerType()) {
@@ -32,8 +33,6 @@ public class NeuralNetwork {
 				break;
 			case O:
 				weightedSum = neurons[i].getThreshold();
-				
-				
 				for(int HiddenNo= INPUT_NEURONS; HiddenNo<INPUT_NEURONS + HIDDEN_NEURONS;HiddenNo++){
 					weightedSum += neurons[i].getWeights()[HiddenNo - INPUT_NEURONS] * neurons[HiddenNo].getOutput();
 				}
@@ -48,7 +47,7 @@ public class NeuralNetwork {
 		
 		//OUTPUT
 		for(int i=INPUT_NEURONS + HIDDEN_NEURONS;i<INPUT_NEURONS + HIDDEN_NEURONS + OUTPUT_NEURONS;i++){
-			//OUTPUT SET	(6,7)
+			//OUTPUT SET
 			if(i == (outputNo+ INPUT_NEURONS + HIDDEN_NEURONS)){
 				neurons[i].setError((targetResult - neurons[i].getOutput()) * neurons[i].derivative());
 				neurons[i].setThreshold(neurons[i].getThreshold() + LEARNING_RATE * neurons[i].getError());
@@ -62,21 +61,21 @@ public class NeuralNetwork {
 		
 		//HIDDEN
 		for(int i=INPUT_NEURONS;i<INPUT_NEURONS + HIDDEN_NEURONS;i++){
-			
+
 			//HIDDEN ERROR SUM
 			double ErrorSum = 0; 
 			for(int j=INPUT_NEURONS + HIDDEN_NEURONS;j<INPUT_NEURONS + HIDDEN_NEURONS + OUTPUT_NEURONS;j++){
-				ErrorSum += (neurons[j].getWeights()[i-3] * neurons[j].getError())* neurons[i].derivative();
+				ErrorSum += (neurons[j].getWeights()[i-INPUT_NEURONS] * neurons[j].getError());
 			}
 			
-			//HIDDEN SET (3,4,5)
-			neurons[i].setError(ErrorSum);
+			//HIDDEN SET
+			neurons[i].setError(ErrorSum * neurons[i].derivative());
 			neurons[i].setThreshold(neurons[i].getThreshold() + LEARNING_RATE * neurons[i].getError());
 			for(int k=0;k<INPUT_NEURONS;k++){
 				neurons[i].getWeights()[k] = neurons[i].getWeights()[k] + LEARNING_RATE * neurons[i].getError() * neurons[k].getOutput();
 			}
 		}
-
+		
 		return this;
 	}
 	
