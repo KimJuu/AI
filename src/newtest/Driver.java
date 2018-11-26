@@ -49,7 +49,7 @@ public class Driver {
 	}
 
 	static void printResult(double[][] result){
-		System.out.println("                        INPUT                          |                   TARGET                  |                 RESULT                 |");
+		System.out.println("                                     INPUT                                       |                          TARGET                          |                         RESULT                          |");
 		System.out.println("-----------------------------------------------------------------");
 
 		for(int i=0;i<TotalData.TRAINING_DATA.length;i++){
