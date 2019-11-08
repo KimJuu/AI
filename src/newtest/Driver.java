@@ -7,7 +7,7 @@ import java.io.InputStreamReader;
 import data.TotalData;
 
 public class Driver {
-	static int NUMB_OF_EPOCHS = 500;
+	static int NUMB_OF_EPOCHS = 100000;
 	
 	public static void main(String[] args) throws IOException {
 		NeuralNetwork neuralNetwork = new NeuralNetwork();
@@ -15,59 +15,55 @@ public class Driver {
 		boolean flag = true;
 		
 		while(flag){
-			System.out.println(">What do you want to do (run, train, no,  exit)  ?");
-			String command = bufferedReader.readLine();
+			System.out.println("학습횟수입력 * 10000");
+			int NUMB_OF_EPOCHS = Integer.parseInt(bufferedReader.readLine());
+			int back_count = 1;
+			int forward_count = 1;
 			
-			switch (command) {
-			case "run":
-				System.out.println(">>>>>>DriverTest run");
-				double[][] result = new double[TotalData.TRAININGTEST_DATA.length][TotalData.TRAININGTEST_DATA[0][1].length];
-				for(int i=0;i<TotalData.TRAININGTEST_DATA.length;i++){
-					for(int j=0;j<TotalData.TRAININGTEST_DATA[0][1].length;j++){
-						result[i][j] = neuralNetwork.forwardprop(TotalData.TRAININGTEST_DATA[i][0]).getNeurons()[j+NeuralNetwork.INPUT_NEURONS+NeuralNetwork.HIDDEN_NEURONS].getOutput();
-						}
-				}
-				printResult(result);
-				break;
-			case "train":
-				for(int i=0;i<NUMB_OF_EPOCHS;i++){
-					System.out.println("[epoch "+i+"]");
-					for(int j=0;j<TotalData.TRAININGTEST_DATA.length;j++){
-						for(int k=0;k<TotalData.TRAININGTEST_DATA[0][1].length;k++){
-							System.out.println(neuralNetwork.forwardprop(TotalData.TRAININGTEST_DATA[j][0]).backpropError(TotalData.TRAININGTEST_DATA[j][1][k],k));
-						}
+			for(int i=0;i<NUMB_OF_EPOCHS * 10000;i++){
+				for(int j=0;j<TotalData.TRAININGTEST_DATA.length;j++){
+					for(int k=0;k<TotalData.TRAININGTEST_DATA[0][1].length;k++){
+						neuralNetwork.forwardprop(TotalData.TRAININGTEST_DATA[j][0]).backpropError(TotalData.TRAININGTEST_DATA[j][1][k],k);
 					}
 				}
-				System.out.println("[done training]");
-				break;
-			case "no":
-				double Year01 = 2.0;
-				double Year02 = 0.0;
-				double Year03 = 1.0;
-				double Year04 = 9.0;
-				double Month01 = 1.0;
-				double Month02 = 1.0;
-				double Day01 = 0.0;
-				double Day02 = 9.0;
-				double Count01 = 8.0;
-				double Count02 = 8.0;
-				double Count03 = 4.0;
 				
-				double[][] TodayResult = new double[1][6];
-				double TRAININGTEST_DATA[][][] = new double [][][]{
-						{{Year01 , Year02, Year03, Year04, Month01, Month02, Day01, Day02, Count01, Count02, Count03}}
-				};
-				for(int j=0;j<6;j++){
-					TodayResult[0][j] = neuralNetwork.forwardprop(TRAININGTEST_DATA[0][0]).getNeurons()[j+NeuralNetwork.INPUT_NEURONS+NeuralNetwork.HIDDEN_NEURONS].getOutput();
+				if(i == back_count * 10000) {
+					double[][] result = new double[TotalData.TRAININGTEST_DATA.length][TotalData.TRAININGTEST_DATA[0][1].length];
+					for(int a=0;a<TotalData.TRAININGTEST_DATA.length;a++){
+						for(int b=0;b<TotalData.TRAININGTEST_DATA[0][1].length;b++){
+							result[a][b] = neuralNetwork.forwardprop(TotalData.TRAININGTEST_DATA[a][0]).getNeurons()[b+NeuralNetwork.INPUT_NEURONS+NeuralNetwork.HIDDEN_NEURONS].getOutput();
+							}
+					}
+					printResult(result);
+					back_count ++;
 				}
-				TodayprintResult(TodayResult);
-				break;
-			case "exit":
-				flag=false;
-				break;
+				
+				if(i == forward_count * 100000) {
+					double Year01 = 2.0;
+					double Year02 = 0.0;
+					double Year03 = 1.0;
+					double Year04 = 9.0;
+					double Month01 = 1.0;
+					double Month02 = 1.0;
+					double Day01 = 0.0;
+					double Day02 = 9.0;
+					double Count01 = 8.0;
+					double Count02 = 8.0;
+					double Count03 = 4.0;
+					
+					double[][] TodayResult = new double[1][6];
+					double TRAININGTEST_DATA[][][] = new double [][][]{
+							{{Year01 , Year02, Year03, Year04, Month01, Month02, Day01, Day02, Count01, Count02, Count03}}
+					};
+					for(int j=0;j<6;j++){
+						TodayResult[0][j] = neuralNetwork.forwardprop(TRAININGTEST_DATA[0][0]).getNeurons()[j+NeuralNetwork.INPUT_NEURONS+NeuralNetwork.HIDDEN_NEURONS].getOutput();
+					}
+					
+					TodayprintResult(TodayResult);
+					forward_count++;
+				}
 			}
 		}
-		System.exit(0);
 	}
 
 	static void printResult(double[][] result){
@@ -88,7 +84,7 @@ public class Driver {
 				}
 			}
 			for(int p=0;p<6;p++){
-				System.out.print(String.format("%.2f", result[i][p])+ "  ");		//寃곌낵
+				System.out.print(String.format("%.3f", result[i][p])+ "  ");		//寃곌낵
 			}
 			System.out.println("");
 		}
@@ -105,7 +101,7 @@ public class Driver {
 				}
 			}
 			for(int p=0;p<6;p++){
-				System.out.print(String.format("%.2f", result[0][p])+ "  ");		//寃곌낵
+				System.out.print(String.format("%.3f", result[0][p])+ "  ");		//寃곌낵
 			}
 			System.out.println("");
 	}

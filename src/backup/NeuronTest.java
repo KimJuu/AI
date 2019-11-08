@@ -5,7 +5,37 @@ public class NeuronTest {
 	
 	private NeuralNetworkTest.LayerType layerType;
 	private double threshold = 0.5 - Math.random();
-	private double[] weights = {0.5 - Math.random(),0.5 - Math.random(),0.5 - Math.random(),0.5 - Math.random(),0.5 - Math.random(),0.5 - Math.random(),0.5 - Math.random(),0.5 - Math.random(),0.5 - Math.random(),0.5 - Math.random(), 0.5 - Math.random(), 0.5 - Math.random(), 0.5 - Math.random(), 0.5 - Math.random(), 0.5 - Math.random(), 0.5 - Math.random(), 0.5 - Math.random(), 0.5 - Math.random(), 0.5 - Math.random(), 0.5 - Math.random(), 0.5 - Math.random(), 0.5 - Math.random()};
+	private double[] weights = {
+			0.5 - Math.random(), 0.5-Math.random(), 0.5-Math.random(), 0.5-Math.random(), 0.5-Math.random(), 0.5-Math.random(), 0.5-Math.random(), 0.5-Math.random(), 0.5-Math.random(), 0.5-Math.random(),
+			0.5 - Math.random(), 0.5-Math.random(), 0.5-Math.random(), 0.5-Math.random(), 0.5-Math.random(), 0.5-Math.random(), 0.5-Math.random(), 0.5-Math.random(), 0.5-Math.random(), 0.5-Math.random(),
+			0.5 - Math.random(), 0.5-Math.random(), 0.5-Math.random(), 0.5-Math.random(), 0.5-Math.random(), 0.5-Math.random(), 0.5-Math.random(), 0.5-Math.random(), 0.5-Math.random(), 0.5-Math.random(),
+			0.5 - Math.random(), 0.5-Math.random(), 0.5-Math.random(), 0.5-Math.random(), 0.5-Math.random(), 0.5-Math.random(), 0.5-Math.random(), 0.5-Math.random(), 0.5-Math.random(), 0.5-Math.random(),
+			0.5 - Math.random(), 0.5-Math.random(), 0.5-Math.random(), 0.5-Math.random(), 0.5-Math.random(), 0.5-Math.random(), 0.5-Math.random(), 0.5-Math.random(), 0.5-Math.random(), 0.5-Math.random(),
+			0.5 - Math.random(), 0.5-Math.random(), 0.5-Math.random(), 0.5-Math.random(), 0.5-Math.random(), 0.5-Math.random(), 0.5-Math.random(), 0.5-Math.random(), 0.5-Math.random(), 0.5-Math.random(),
+			0.5 - Math.random(), 0.5-Math.random(), 0.5-Math.random(), 0.5-Math.random(), 0.5-Math.random(), 0.5-Math.random(), 0.5-Math.random(), 0.5-Math.random(), 0.5-Math.random(), 0.5-Math.random(),
+			0.5 - Math.random(), 0.5-Math.random(), 0.5-Math.random(), 0.5-Math.random(), 0.5-Math.random(), 0.5-Math.random(), 0.5-Math.random(), 0.5-Math.random(), 0.5-Math.random(), 0.5-Math.random(),
+			0.5 - Math.random(), 0.5-Math.random(), 0.5-Math.random(), 0.5-Math.random(), 0.5-Math.random(), 0.5-Math.random(), 0.5-Math.random(), 0.5-Math.random(), 0.5-Math.random(), 0.5-Math.random(),
+			0.5 - Math.random(), 0.5-Math.random(), 0.5-Math.random(), 0.5-Math.random(), 0.5-Math.random(), 0.5-Math.random(), 0.5-Math.random(), 0.5-Math.random(), 0.5-Math.random(), 0.5-Math.random(),
+			0.5 - Math.random(), 0.5-Math.random(), 0.5-Math.random(), 0.5-Math.random(), 0.5-Math.random(), 0.5-Math.random(), 0.5-Math.random(), 0.5-Math.random(), 0.5-Math.random(), 0.5-Math.random(),
+			0.5 - Math.random(), 0.5-Math.random(), 0.5-Math.random(), 0.5-Math.random(), 0.5-Math.random(), 0.5-Math.random(), 0.5-Math.random(), 0.5-Math.random(), 0.5-Math.random(), 0.5-Math.random(),
+			0.5 - Math.random(), 0.5-Math.random(), 0.5-Math.random(), 0.5-Math.random(), 0.5-Math.random(), 0.5-Math.random(), 0.5-Math.random(), 0.5-Math.random(), 0.5-Math.random(), 0.5-Math.random(),
+			0.5 - Math.random(), 0.5-Math.random(), 0.5-Math.random(), 0.5-Math.random(), 0.5-Math.random(), 0.5-Math.random(), 0.5-Math.random(), 0.5-Math.random(), 0.5-Math.random(), 0.5-Math.random(),
+			0.5 - Math.random(), 0.5-Math.random(), 0.5-Math.random(), 0.5-Math.random(), 0.5-Math.random(), 0.5-Math.random(), 0.5-Math.random(), 0.5-Math.random(), 0.5-Math.random(), 0.5-Math.random(),
+			0.5 - Math.random(), 0.5-Math.random(), 0.5-Math.random(), 0.5-Math.random(), 0.5-Math.random(), 0.5-Math.random(), 0.5-Math.random(), 0.5-Math.random(), 0.5-Math.random(), 0.5-Math.random(),
+			0.5 - Math.random(), 0.5-Math.random(), 0.5-Math.random(), 0.5-Math.random(), 0.5-Math.random(), 0.5-Math.random(), 0.5-Math.random(), 0.5-Math.random(), 0.5-Math.random(), 0.5-Math.random(),
+			0.5 - Math.random(), 0.5-Math.random(), 0.5-Math.random(), 0.5-Math.random(), 0.5-Math.random(), 0.5-Math.random(), 0.5-Math.random(), 0.5-Math.random(), 0.5-Math.random(), 0.5-Math.random(),
+			0.5 - Math.random(), 0.5-Math.random(), 0.5-Math.random(), 0.5-Math.random(), 0.5-Math.random(), 0.5-Math.random(), 0.5-Math.random(), 0.5-Math.random(), 0.5-Math.random(), 0.5-Math.random(),
+			0.5 - Math.random(), 0.5-Math.random(), 0.5-Math.random(), 0.5-Math.random(), 0.5-Math.random(), 0.5-Math.random(), 0.5-Math.random(), 0.5-Math.random(), 0.5-Math.random(), 0.5-Math.random(),
+			0.5 - Math.random(), 0.5-Math.random(), 0.5-Math.random(), 0.5-Math.random(), 0.5-Math.random(), 0.5-Math.random(), 0.5-Math.random(), 0.5-Math.random(), 0.5-Math.random(), 0.5-Math.random(),
+			0.5 - Math.random(), 0.5-Math.random(), 0.5-Math.random(), 0.5-Math.random(), 0.5-Math.random(), 0.5-Math.random(), 0.5-Math.random(), 0.5-Math.random(), 0.5-Math.random(), 0.5-Math.random(),
+			0.5 - Math.random(), 0.5-Math.random(), 0.5-Math.random(), 0.5-Math.random(), 0.5-Math.random(), 0.5-Math.random(), 0.5-Math.random(), 0.5-Math.random(), 0.5-Math.random(), 0.5-Math.random(),
+			0.5 - Math.random(), 0.5-Math.random(), 0.5-Math.random(), 0.5-Math.random(), 0.5-Math.random(), 0.5-Math.random(), 0.5-Math.random(), 0.5-Math.random(), 0.5-Math.random(), 0.5-Math.random(),
+			0.5 - Math.random(), 0.5-Math.random(), 0.5-Math.random(), 0.5-Math.random(), 0.5-Math.random(), 0.5-Math.random(), 0.5-Math.random(), 0.5-Math.random(), 0.5-Math.random(), 0.5-Math.random(),
+			0.5 - Math.random(), 0.5-Math.random(), 0.5-Math.random(), 0.5-Math.random(), 0.5-Math.random(), 0.5-Math.random(), 0.5-Math.random(), 0.5-Math.random(), 0.5-Math.random(), 0.5-Math.random(),
+			0.5 - Math.random(), 0.5-Math.random(), 0.5-Math.random(), 0.5-Math.random(), 0.5-Math.random(), 0.5-Math.random(), 0.5-Math.random(), 0.5-Math.random(), 0.5-Math.random(), 0.5-Math.random(),
+			0.5 - Math.random(), 0.5-Math.random(), 0.5-Math.random(), 0.5-Math.random(), 0.5-Math.random(), 0.5-Math.random(), 0.5-Math.random(), 0.5-Math.random(), 0.5-Math.random(), 0.5-Math.random()
+	
+	};
 	private double output = 0;
 	private double error = 0;
 	public NeuronTest(NeuralNetworkTest.LayerType layerType){

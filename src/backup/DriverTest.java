@@ -34,7 +34,7 @@ public class DriverTest {
 					System.out.println("[epoch "+i+"]");
 					for(int j=0;j<TotalData.TRAININGTEST_DATA.length;j++){
 						for(int k=0;k<TotalData.TRAININGTEST_DATA[0][1].length;k++){
-							System.out.println(neuralNetworkTest.forwardprop(TotalData.TRAININGTEST_DATA[j][0]).backpropError(TotalData.TRAININGTEST_DATA[j][1][k],k));
+							neuralNetworkTest.forwardprop(TotalData.TRAININGTEST_DATA[j][0]).backpropError(TotalData.TRAININGTEST_DATA[j][1][k],k);
 						}
 					}
 				}
