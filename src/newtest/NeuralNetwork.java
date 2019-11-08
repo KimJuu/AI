@@ -6,7 +6,7 @@ import java.util.Arrays;
 public class NeuralNetwork {
 	
 	static enum LayerType {I, H, O}
-	static final double LEARNING_RATE=0.012;
+	static final double LEARNING_RATE=0.015;
 	final static int INPUT_NEURONS = 11;
 	final static int HIDDEN_NEURONS = 18;
 	final static int OUTPUT_NEURONS = 6;

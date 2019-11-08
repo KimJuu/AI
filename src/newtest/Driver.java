@@ -18,7 +18,6 @@ public class Driver {
 			System.out.println("학습횟수입력 * 10000");
 			int NUMB_OF_EPOCHS = Integer.parseInt(bufferedReader.readLine());
 			int back_count = 1;
-			int forward_count = 1;
 			
 			for(int i=0;i<NUMB_OF_EPOCHS * 10000;i++){
 				for(int j=0;j<TotalData.TRAININGTEST_DATA.length;j++){
@@ -26,8 +25,7 @@ public class Driver {
 						neuralNetwork.forwardprop(TotalData.TRAININGTEST_DATA[j][0]).backpropError(TotalData.TRAININGTEST_DATA[j][1][k],k);
 					}
 				}
-				
-				if(i == back_count * 10000) {
+				if(i == back_count * 50000) {
 					double[][] result = new double[TotalData.TRAININGTEST_DATA.length][TotalData.TRAININGTEST_DATA[0][1].length];
 					for(int a=0;a<TotalData.TRAININGTEST_DATA.length;a++){
 						for(int b=0;b<TotalData.TRAININGTEST_DATA[0][1].length;b++){
@@ -35,32 +33,18 @@ public class Driver {
 							}
 					}
 					printResult(result);
-					back_count ++;
-				}
-				
-				if(i == forward_count * 100000) {
-					double Year01 = 2.0;
-					double Year02 = 0.0;
-					double Year03 = 1.0;
-					double Year04 = 9.0;
-					double Month01 = 1.0;
-					double Month02 = 1.0;
-					double Day01 = 0.0;
-					double Day02 = 9.0;
-					double Count01 = 8.0;
-					double Count02 = 8.0;
-					double Count03 = 4.0;
-					
+
 					double[][] TodayResult = new double[1][6];
 					double TRAININGTEST_DATA[][][] = new double [][][]{
-							{{Year01 , Year02, Year03, Year04, Month01, Month02, Day01, Day02, Count01, Count02, Count03}}
+							{{2,0,1,9, 1,1,0,9, 8,8,4},{}}
 					};
 					for(int j=0;j<6;j++){
 						TodayResult[0][j] = neuralNetwork.forwardprop(TRAININGTEST_DATA[0][0]).getNeurons()[j+NeuralNetwork.INPUT_NEURONS+NeuralNetwork.HIDDEN_NEURONS].getOutput();
 					}
 					
-					TodayprintResult(TodayResult);
-					forward_count++;
+					TodayprintResult(TodayResult, TRAININGTEST_DATA);
+					
+					back_count ++;
 				}
 			}
 		}
@@ -84,24 +68,24 @@ public class Driver {
 				}
 			}
 			for(int p=0;p<6;p++){
-				System.out.print(String.format("%.3f", result[i][p])+ "  ");		//寃곌낵
+				System.out.print(String.format("%.2f", result[i][p])+ "  ");		//寃곌낵
 			}
 			System.out.println("");
 		}
 	}
 	
-	static void TodayprintResult(double[][] result){
+	static void TodayprintResult(double[][] result, double[][][] data){
 		System.out.println("                                     INPUT                                       |                         RESULT                          |");
 		System.out.println("-----------------------------------------------------------------");
 
 			for(int j=0;j<TotalData.TRAININGTEST_DATA[0][0].length;j++){
-				System.out.print(TotalData.TRAININGTEST_DATA[0][0][j]+"  ");	//�엯�젰
+				System.out.print(data[0][0][j]+"  ");	//�엯�젰
 				if(j == (NeuralNetwork.INPUT_NEURONS -1)){
 					System.out.print(" | ");	
 				}
 			}
 			for(int p=0;p<6;p++){
-				System.out.print(String.format("%.3f", result[0][p])+ "  ");		//寃곌낵
+				System.out.print(String.format("%.2f", result[0][p])+ "  ");		//寃곌낵
 			}
 			System.out.println("");
 	}
