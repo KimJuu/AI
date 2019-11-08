@@ -6,9 +6,9 @@ import java.util.Arrays;
 public class NeuralNetwork {
 	
 	static enum LayerType {I, H, O}
-	static final double LEARNING_RATE=0.99;
+	static final double LEARNING_RATE=0.014;
 	final static int INPUT_NEURONS = 12;
-	final static int HIDDEN_NEURONS = 14;
+	final static int HIDDEN_NEURONS = 18;
 	final static int OUTPUT_NEURONS = 6;
 	private Neuron[] neurons = new Neuron[INPUT_NEURONS + HIDDEN_NEURONS +OUTPUT_NEURONS];
 	public NeuralNetwork(){	//뉴런생성
